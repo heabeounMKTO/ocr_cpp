@@ -1,0 +1,10 @@
+address
+appearance
+birth
+birthplace
+expiry
+gender
+height
+id_num
+name
+name_latin

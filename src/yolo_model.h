@@ -3,6 +3,7 @@
 #include <cmath>
 #include <torch/script.h>
 #define INFERENCE_SIZE 640.0
+#define BATCH_SIZE 1
 
 typedef struct {
   cv::Rect box;
@@ -53,7 +54,7 @@ static inline YoloModel *create_yolo_detector(const char *model_path,
 }
 
 static inline void scale_wh(int original_width, int original_height, 
-                            int *target_width, int *target_height) {
+                            int *target_width, int *target_height, float *ratio) {
   float r = std::min((float) INFERENCE_SIZE / original_width, 
                      (float) INFERENCE_SIZE / original_height);
 
@@ -63,6 +64,7 @@ static inline void scale_wh(int original_width, int original_height,
   *target_width = (int) std::round(original_width * r);
 
   *target_height = (int) std::round(original_height * r);
+  *ratio = r;
 }
 
 static inline void preprocess(cv::Mat *image, torch::Tensor *output, int target_size) {
@@ -71,7 +73,8 @@ static inline void preprocess(cv::Mat *image, torch::Tensor *output, int target_
   cv::cvtColor(resized, resized, cv::COLOR_BGR2RGB);
   cv::Mat float_img;
   resized.convertTo(float_img, CV_32F, 1.0 / 255.0);
-  *output = torch::from_blob(float_img.data, {1,target_size, target_size, 3}, torch::kFloat32).clone(); // dealloc aka not clonign causes a segfault
+  // batch size , w , h , channels
+  *output = torch::from_blob(float_img.data, {BATCH_SIZE, target_size, target_size, 3}, torch::kFloat32).clone(); // dealloc aka not clonign causes a segfault
   *output = output->permute({0, 3, 1, 2}).contiguous();
 }
 
