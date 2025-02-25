@@ -5,6 +5,7 @@ build/
 external/build/*
 external/libtorch
 external/opencv
+models/
 # external/*
 # Compiled Object files
 *.slo
