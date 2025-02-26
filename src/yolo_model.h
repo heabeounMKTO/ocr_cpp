@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <string>
 #include <cstdio>
 #include <opencv2/opencv.hpp>
 #include <cmath>
@@ -15,6 +16,18 @@ typedef struct {
   cv::Rect box;
   float confidence;
   int class_id;
+  std::string toString() const {
+  std::stringstream ss;
+    ss << "Detection{" 
+       << "class_id=" << class_id 
+       << ", confidence=" << confidence 
+       << ", box=[x=" << box.x 
+       << ", y=" << box.y 
+       << ", width=" << box.width 
+       << ", height=" << box.height 
+       << "]}";
+    return ss.str();
+  }
 } Detection;
 
 typedef struct YoloModel {
@@ -150,7 +163,8 @@ std::vector<Detection> run_inference(YoloModel *detector,
                                      cv::Mat *input_image) {
 
   // torch::Device device(torch::kCPU);
-  std::vector<Detection> detections;
+  std::vector<Detection> raw_detections, filtered_detections;
+  
   torch::Tensor input_tensor;
 
   float preproc_ratio = preprocess(input_image, &input_tensor, INFERENCE_SIZE);
@@ -160,9 +174,6 @@ std::vector<Detection> run_inference(YoloModel *detector,
            i < input_tensor.dim() - 1 ? ", " : "");
   }
   printf("]\n");
-  float conf_thresh = 0.5;
-  float iou_thresh = 0.5;
-  int max_det = 100;
   try {
     torch::NoGradGuard no_grad;
     std::vector<torch::jit::IValue> _inputs;
@@ -180,7 +191,6 @@ std::vector<Detection> run_inference(YoloModel *detector,
     for (int i=0; i < num_points; i++) {
       auto objectness = output[0][4][i].item<float>();
       if (objectness >= detector->conf_thresh) {
-        fprintf(stdout, "OBJECTNESS %f\n", objectness);
         float x = output[0][0][i].item<float>();
         float y = output[0][1][i].item<float>();
         float w = output[0][2][i].item<float>();
@@ -191,18 +201,46 @@ std::vector<Detection> run_inference(YoloModel *detector,
         for (int cls = 5; cls < channels; cls++) {
           class_scores.push_back(output[0][cls][i].item<float>());
         }
-
         auto max_it = std::max_element(class_scores.begin(), class_scores.end());
         int class_id = std::distance(class_scores.begin(), max_it);
-        float class_conf = *max_it;
-        float final_conf = objectness * class_conf;
-        fprintf(stdout, "final conf: %f\n", final_conf);
-
+        Detection det;
+        det.box = cv::Rect(x - w/2, y - h/2, w, h);
+        det.confidence = objectness;
+        det.class_id = class_id;
+        raw_detections.push_back(det);
       } 
     }
-    
-    return detections;
 
+    // nms 
+    if (!raw_detections.empty()) {
+      std::sort(raw_detections.begin(), raw_detections.end(),
+                [](const Detection &a, const Detection &b) {
+                  return a.confidence > b.confidence;
+                });
+      std::vector<bool> keep(raw_detections.size(), true);
+
+
+      for (size_t i = 0; i < raw_detections.size(); i++) {
+        if (!keep[i]) continue;
+        for (size_t j = i + 1; j < raw_detections.size(); j++) {
+          if (!keep[j]) continue;
+          if (raw_detections[i].class_id == raw_detections[j].class_id) {
+            float iou = compute_iou(&raw_detections[i].box, &raw_detections[j].box);
+            if (iou > detector->nms_thresh) {
+              keep[j] = false;
+            }
+          }
+        }
+      }
+
+    for (size_t i = 0; i < raw_detections.size(); i++) {
+        if (keep[i]) {
+            filtered_detections.push_back(raw_detections[i]);
+        }
+      }
+    }
+
+    return filtered_detections;
   } catch (const std::exception &e) {
     fprintf(stderr, "fucking torch forward error %s", e.what());
     throw;

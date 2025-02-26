@@ -19,8 +19,15 @@ int main(int argc, char **argv) {
     fprintf(stderr, "Failed to load image\n");
     return -1;
   };
-
+  std::cout << keyinfo_model->class_names << std::endl;
   // torch::Tensor input_tensor;
   // preprocess(&image, &input_tensor, INFERENCE_SIZE);
   std::vector<Detection> _a = run_inference(keyinfo_model, &image);
+  for (int i = 0; i < _a.size(); i++ ) {
+    fprintf(stdout, "conf %f\n", _a[i].confidence);
+  std::cout << 
+    "class_name " <<  keyinfo_model->class_names[_a[i].class_id] 
+    << std::endl;
+
+  }
 }
