@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cstdio>
 #include <opencv2/opencv.hpp>
 #include <cmath>
@@ -86,14 +87,8 @@ static inline float preprocess(cv::Mat *input_image,
     cv::Mat float_img;
     canvas.convertTo(float_img, CV_32F, 1.0/255.0);
     *output_tensor = torch::from_blob(float_img.data, {target_size, target_size, 3}, torch::kFloat32).clone();
-    
     *output_tensor = output_tensor->permute({2, 0, 1}).contiguous();
     *output_tensor = output_tensor->unsqueeze(0);
-    std::cout << "input_image tensor shape: [" 
-              << output_tensor->size(0) << ", " 
-              << output_tensor->size(1) << ", " 
-              << output_tensor->size(2) << ", " 
-              << output_tensor->size(3) << "]" << std::endl;
     return ratio;
 }
 
@@ -182,22 +177,27 @@ std::vector<Detection> run_inference(YoloModel *detector,
     int num_points = output.size(2);
     
     std::vector<Detection> detections;
-
     for (int i=0; i < num_points; i++) {
       auto objectness = output[0][4][i].item<float>();
-      // float x = output[0][0][i].item<float>();
-      // float y = output[0][1][i].item<float>();
-      // float w = output[0][2][i].item<float>();
-      // float h = output[0][3][i].item<float>();
-      // fprintf(stdout, "%f %f %f %f\n", x,y,w,h);
-
-      if (objectness >= 0.01) {
+      if (objectness >= detector->conf_thresh) {
         fprintf(stdout, "OBJECTNESS %f\n", objectness);
         float x = output[0][0][i].item<float>();
         float y = output[0][1][i].item<float>();
         float w = output[0][2][i].item<float>();
         float h = output[0][3][i].item<float>();
-        fprintf(stdout, "%f %f %f %f\n", x,y,w,h);
+        std::vector<float> class_scores;
+
+        // starts at 5 due to channels - 5 = class conf
+        for (int cls = 5; cls < channels; cls++) {
+          class_scores.push_back(output[0][cls][i].item<float>());
+        }
+
+        auto max_it = std::max_element(class_scores.begin(), class_scores.end());
+        int class_id = std::distance(class_scores.begin(), max_it);
+        float class_conf = *max_it;
+        float final_conf = objectness * class_conf;
+        fprintf(stdout, "final conf: %f\n", final_conf);
+
       } 
     }
     
