@@ -11,7 +11,6 @@
 using torch::indexing::Slice;
 using torch::indexing::None;
 
-
 typedef struct {
   cv::Rect box;
   float confidence;
@@ -163,12 +162,25 @@ std::vector<Detection> run_inference(YoloModel *detector,
                                      cv::Mat *input_image) {
 
   // torch::Device device(torch::kCPU);
-  std::vector<Detection> raw_detections, filtered_detections;
+  std::vector<Detection> detections, filtered_detections;
   
   torch::Tensor input_tensor;
 
+
   float preproc_ratio = preprocess(input_image, &input_tensor, INFERENCE_SIZE);
-  printf("input_image tensor shape: [");
+   
+  int o_width = input_image->cols;
+  int o_height = input_image->rows;
+
+  int scaled_width = std::round(o_width * preproc_ratio);
+  int scaled_height = std::round(o_height * preproc_ratio);
+
+  int pad_x = (INFERENCE_SIZE - scaled_width) / 2;
+  int pad_y = (INFERENCE_SIZE - scaled_height) / 2;
+
+
+
+
   for (int i = 0; i < input_tensor.dim(); i++) {
     printf("%ld%s", input_tensor.size(i),
            i < input_tensor.dim() - 1 ? ", " : "");
@@ -195,6 +207,8 @@ std::vector<Detection> run_inference(YoloModel *detector,
         float y = output[0][1][i].item<float>();
         float w = output[0][2][i].item<float>();
         float h = output[0][3][i].item<float>();
+
+
         std::vector<float> class_scores;
 
         // starts at 5 due to channels - 5 = class conf
@@ -204,38 +218,50 @@ std::vector<Detection> run_inference(YoloModel *detector,
         auto max_it = std::max_element(class_scores.begin(), class_scores.end());
         int class_id = std::distance(class_scores.begin(), max_it);
         Detection det;
-        det.box = cv::Rect(x - w/2, y - h/2, w, h);
+
+        x = x - pad_x;
+        // y = y - pad_y;
+
+
+
+
+
+        float scaled_x = (x - pad_x) / preproc_ratio;
+        float scaled_y = (y - pad_y) / preproc_ratio;
+        float scaled_w = w / preproc_ratio;
+        float scaled_h = h / preproc_ratio;
+        det.box = cv::Rect(scaled_x - scaled_w/2, scaled_y - scaled_h/2, scaled_w, scaled_h);
+
         det.confidence = objectness;
         det.class_id = class_id;
-        raw_detections.push_back(det);
+        detections.push_back(det);
       } 
     }
 
     // nms 
-    if (!raw_detections.empty()) {
-      std::sort(raw_detections.begin(), raw_detections.end(),
+    if (!detections.empty()) {
+      std::sort(detections.begin(), 
+                detections.end(),
                 [](const Detection &a, const Detection &b) {
                   return a.confidence > b.confidence;
                 });
-      std::vector<bool> keep(raw_detections.size(), true);
+      std::vector<bool> keep(detections.size(), true);
 
-
-      for (size_t i = 0; i < raw_detections.size(); i++) {
+      for (size_t i = 0; i < detections.size(); i++) {
         if (!keep[i]) continue;
-        for (size_t j = i + 1; j < raw_detections.size(); j++) {
+        for (size_t j = i + 1; j < detections.size(); j++) {
           if (!keep[j]) continue;
-          if (raw_detections[i].class_id == raw_detections[j].class_id) {
-            float iou = compute_iou(&raw_detections[i].box, &raw_detections[j].box);
+          if (detections[i].class_id == detections[j].class_id) {
+            float iou = compute_iou(&detections[i].box, &detections[j].box);
             if (iou > detector->nms_thresh) {
               keep[j] = false;
             }
           }
         }
       }
-
-    for (size_t i = 0; i < raw_detections.size(); i++) {
+    for (size_t i = 0; i < detections.size(); i++) {
         if (keep[i]) {
-            filtered_detections.push_back(raw_detections[i]);
+            filtered_detections.push_back(detections[i]);
         }
       }
     }
