@@ -80,7 +80,6 @@ static inline cv::Mat letterbox(cv::Mat *input_image, int target_size = 640) {
     
     int dx = (target_size - new_w) / 2;
     int dy = (target_size - new_h) / 2;
-
     cv::Mat roi = canvas(cv::Rect(dx, dy, new_w, new_h));
     resized.copyTo(roi);
 
