@@ -11,6 +11,15 @@ extern "C" {
 #include <stdio.h>
 #include <stdlib.h>
 
+
+/**
+* @brief onnx model abstraction.
+* 
+* @param env `OrtEnv`.
+* @param session `OrtSession`.
+* @param session_options `OrtSessionOptions`
+* @param allocator `OrtAllocator`.
+*/
 typedef struct {
   const OrtApi *api;
   OrtEnv *env;
