@@ -55,7 +55,6 @@ std::vector<float> mat_to_tensor_data(const cv::Mat& input) {
     return tensor_data;
 }
 
-
 static inline OrtValue* mat_to_onnx_value(const cv::Mat &input, const OnnxModelInfo *model_info) {
   const int64_t input_shape[] = {1, 3, 640, 640};
   const size_t input_shape_len = 4;
