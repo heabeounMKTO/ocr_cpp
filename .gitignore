@@ -1,8 +1,6 @@
-# ---> C++
-# Prerequisites
-*.d
-build/
-external/build/*
+#--->C ++
+#Prerequisites
+*.d build / external / build/*
 external/libtorch
 external/opencv
 external/onnxruntime*

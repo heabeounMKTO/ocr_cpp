@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/media/hbdesk/hb_desk_ext/ocr_cpp/build",
+  "command": "/usr/bin/c++  -I/media/hbdesk/hb_desk_ext/ocr_cpp/include -I/media/hbdesk/hb_desk_ext/ocr_cpp/external/libtorch/include -I/media/hbdesk/hb_desk_ext/ocr_cpp/external/libtorch/include/torch/csrc/api/include -I/media/hbdesk/hb_desk_ext/ocr_cpp/external/onnxruntime-linux-x64-1.21.0/include -isystem /usr/include/opencv4 -fuse-ld=mold -g -std=gnu++17 -o CMakeFiles/run_ocr.dir/src/run_ocr.cpp.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/src/run_ocr.cpp",
+  "file": "/media/hbdesk/hb_desk_ext/ocr_cpp/src/run_ocr.cpp",
+  "output": "CMakeFiles/run_ocr.dir/src/run_ocr.cpp.o"
+}
+]

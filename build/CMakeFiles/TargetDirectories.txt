@@ -1,0 +1,3 @@
+/media/hbdesk/hb_desk_ext/ocr_cpp/build/CMakeFiles/run_ocr.dir
+/media/hbdesk/hb_desk_ext/ocr_cpp/build/CMakeFiles/edit_cache.dir
+/media/hbdesk/hb_desk_ext/ocr_cpp/build/CMakeFiles/rebuild_cache.dir
