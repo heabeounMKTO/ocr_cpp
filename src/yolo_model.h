@@ -3,6 +3,7 @@
 #include <string.h>
 #include <vector>
 #include "../include/onnx_utils.h"
+#include "onnxruntime_c_api.h"
 #include <memory>
 #include <algorithm>
 #include <iostream>
@@ -51,27 +52,36 @@ std::vector<float> mat_to_tensor_data(const cv::Mat& input) {
             }
         }
     }
-    
     return tensor_data;
 }
 
-static inline OrtValue* mat_to_onnx_value(const cv::Mat &input, const OnnxModelInfo *model_info) {
+static inline void mat_to_onnx_value(const cv::Mat &input, 
+                                          const OnnxModelInfo *model_info,
+                                          OnnxModel *onnx_model,
+                                          OrtValue* input_tensor) {
   const int64_t input_shape[] = {1, 3, 640, 640};
   const size_t input_shape_len = 4;
-  OrtValue *input_tensor; 
-  auto ort_api = OrtGetApiBase()->GetApi(ORT_API_VERSION);
+  // OrtValue *input_tensor = NULL; 
   std::vector<float> tensor_data = mat_to_tensor_data(input); 
-  // std::cout << tensor_data.data() << std::endl;
-  ort_api->CreateTensorWithDataAsOrtValue(
-    model_info->mem_info,
-    tensor_data.data(),
-    tensor_data.size() * sizeof(float),
+  // fprintf(stdout, "tensor sisze %ld\n", tensor_data.size() * sizeof(float));
+  // fprintf(stdout, "tensor data %p\n", tensor_data.data());
+  // onnx_model->api->CreateTensorWithDataAsOrtValue(
+  //   model_info->mem_info,
+  //   tensor_data.data(),
+  //   tensor_data.size() * sizeof(float),
+  //   input_shape,
+  //   input_shape_len,
+  //   ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT, 
+  //   &input_tensor
+  // );
+  onnx_model->api->CreateTensorAsOrtValue(
+    onnx_model->allocator,
     input_shape,
-    input_shape_len,
+    input_shape_len, 
     ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT,
     &input_tensor
   );
-  return input_tensor;
+  // return input_tensor;
 }
 
 static inline std::vector<std::string> get_class_names(const std::string &path) {

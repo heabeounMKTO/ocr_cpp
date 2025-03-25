@@ -32,8 +32,8 @@ typedef struct {
 typedef struct {
   size_t num_input_nodes;
   size_t num_output_nodes;
-  char input_name;
-  char output_name;
+  char input_names;
+  char output_names;
   OrtMemoryInfo *mem_info;
 } OnnxModelInfo;
 
@@ -58,23 +58,24 @@ static inline OnnxModelInfo onnx_model_get_info(OnnxModel *model) {
   }
   size_t num_input_nodes;
   size_t num_output_nodes;
-  char *input_name;
-  char *output_name;
+  char *input_names;
+  char *output_names;
   OrtMemoryInfo *mem_info;
   OnnxModelInfo model_info;
   OrtStatus *status = NULL;
   status = model->api->SessionGetInputCount(model->session, &num_input_nodes);
   onnx_model_check_status(model->api, status);
-
-  status = model->api->SessionGetInputName(model->session, 0, model->allocator,
-                                           &input_name);
+  status = model->api->SessionGetInputName(model->session, 0, 
+                                           model->allocator,
+                                           &input_names);
   onnx_model_check_status(model->api, status);
 
   status = model->api->SessionGetOutputCount(model->session, &num_output_nodes);
   onnx_model_check_status(model->api, status);
 
-  status = model->api->SessionGetOutputName(model->session, 0, model->allocator,
-                                            &output_name);
+  status = model->api->SessionGetOutputName(model->session, 0, 
+                                            model->allocator,
+                                            &output_names);
   onnx_model_check_status(model->api, status);
   model->api->CreateCpuMemoryInfo(OrtArenaAllocator, OrtMemTypeDefault,
                                   &mem_info);
