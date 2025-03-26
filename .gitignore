@@ -1,10 +1,13 @@
-# ---> C++
-# Prerequisites
-*.d
-build/
-external/build/*
+#--->C ++
+#Prerequisites
+*.d build / external / build/*
+*.png
+*.jpeg
+*.jpg
+.cache/
 external/libtorch
 external/opencv
+external/onnxruntime*
 models/
 # external/*
 # Compiled Object files

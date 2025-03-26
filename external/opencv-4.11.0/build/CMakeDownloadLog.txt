@@ -1,0 +1,1 @@
+#use_cache "/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/.cache"
