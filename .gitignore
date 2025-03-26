@@ -1,6 +1,9 @@
 #--->C ++
 #Prerequisites
 *.d build / external / build/*
+*.png
+*.jpeg
+*.jpg
 external/libtorch
 external/opencv
 external/onnxruntime*

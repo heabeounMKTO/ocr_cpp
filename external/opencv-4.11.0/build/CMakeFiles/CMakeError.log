@@ -1,188 +1,159 @@
 Build output check failed:
     Regex: 'command[- ]line option .* is valid for .* but not for C'
-    Output line: 'cc1: warning: command-line option '-Wnon-virtual-dtor' is valid for C++/ObjC++ but not for C'
+    Output line: 'cc1: warning: command-line option ‘-Wnon-virtual-dtor’ is valid for C++/ObjC++ but not for C'
 Compilation failed:
     source file: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c'
     check option: ' -fsigned-char -W -Wall -Wreturn-type  -Wnon-virtual-dtor'
 ===== BUILD LOG =====
 Change Dir: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp'
 
-Run Build Command(s): /usr/bin/ninja -v cmTC_89469
-[1/2] /usr/bin/cc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type  -Wnon-virtual-dtor -o CMakeFiles/cmTC_89469.dir/src.c.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c
-cc1: warning: command-line option '-Wnon-virtual-dtor' is valid for C++/ObjC++ but not for C
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring '#pragma  ' [-Wunknown-pragmas]
+Run Build Command(s): /usr/bin/ninja -v cmTC_b712f
+[1/2] /usr/bin/cc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type  -Wnon-virtual-dtor -o CMakeFiles/cmTC_b712f.dir/src.c.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c
+cc1: warning: command-line option ‘-Wnon-virtual-dtor’ is valid for C++/ObjC++ but not for C
+/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
     1 | #pragma
       | 
-[2/2] : && /usr/bin/cc -O3 -DNDEBUG  CMakeFiles/cmTC_89469.dir/src.c.o -o cmTC_89469   && :
+[2/2] : && /usr/bin/cc -O3 -DNDEBUG  CMakeFiles/cmTC_b712f.dir/src.c.o -o cmTC_b712f   && :
 
 
 ===== END =====
 
 Build output check failed:
     Regex: 'command[- ]line option .* is valid for .* but not for C\+\+'
-    Output line: 'cc1plus: warning: command-line option '-Wmissing-prototypes' is valid for C/ObjC but not for C++'
+    Output line: 'cc1plus: warning: command-line option ‘-Wmissing-prototypes’ is valid for C/ObjC but not for C++'
 Compilation failed:
     source file: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx'
     check option: ' -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations  -Wmissing-prototypes'
 ===== BUILD LOG =====
 Change Dir: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp'
 
-Run Build Command(s): /usr/bin/ninja -v cmTC_66bfa
-[1/2] /usr/bin/c++   -O3 -DNDEBUG -std=c++11 -fPIE    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations  -Wmissing-prototypes -o CMakeFiles/cmTC_66bfa.dir/src.cxx.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx
-cc1plus: warning: command-line option '-Wmissing-prototypes' is valid for C/ObjC but not for C++
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring '#pragma  ' [-Wunknown-pragmas]
+Run Build Command(s): /usr/bin/ninja -v cmTC_465bb
+[1/2] /usr/bin/c++   -O3 -DNDEBUG -std=c++11 -fPIE    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations  -Wmissing-prototypes -o CMakeFiles/cmTC_465bb.dir/src.cxx.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx
+cc1plus: warning: command-line option ‘-Wmissing-prototypes’ is valid for C/ObjC but not for C++
+/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
     1 | #pragma
       | 
-[2/2] : && /usr/bin/c++ -O3 -DNDEBUG  CMakeFiles/cmTC_66bfa.dir/src.cxx.o -o cmTC_66bfa   && :
+[2/2] : && /usr/bin/c++ -O3 -DNDEBUG  CMakeFiles/cmTC_465bb.dir/src.cxx.o -o cmTC_465bb   && :
 
 
 ===== END =====
 
 Build output check failed:
     Regex: 'command[- ]line option .* is valid for .* but not for C\+\+'
-    Output line: 'cc1plus: warning: command-line option '-Wstrict-prototypes' is valid for C/ObjC but not for C++'
+    Output line: 'cc1plus: warning: command-line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++'
 Compilation failed:
     source file: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx'
     check option: ' -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations  -Wstrict-prototypes'
 ===== BUILD LOG =====
 Change Dir: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp'
 
-Run Build Command(s): /usr/bin/ninja -v cmTC_c2dcd
-[1/2] /usr/bin/c++   -O3 -DNDEBUG -std=c++11 -fPIE    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations  -Wstrict-prototypes -o CMakeFiles/cmTC_c2dcd.dir/src.cxx.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx
-cc1plus: warning: command-line option '-Wstrict-prototypes' is valid for C/ObjC but not for C++
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring '#pragma  ' [-Wunknown-pragmas]
+Run Build Command(s): /usr/bin/ninja -v cmTC_565e9
+[1/2] /usr/bin/c++   -O3 -DNDEBUG -std=c++11 -fPIE    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations  -Wstrict-prototypes -o CMakeFiles/cmTC_565e9.dir/src.cxx.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx
+cc1plus: warning: command-line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
     1 | #pragma
       | 
-[2/2] : && /usr/bin/c++ -O3 -DNDEBUG  CMakeFiles/cmTC_c2dcd.dir/src.cxx.o -o cmTC_c2dcd   && :
+[2/2] : && /usr/bin/c++ -O3 -DNDEBUG  CMakeFiles/cmTC_565e9.dir/src.cxx.o -o cmTC_565e9   && :
 
 
 ===== END =====
 
 Build output check failed:
     Regex: 'command[- ]line option .* is valid for .* but not for C'
-    Output line: 'cc1: warning: command-line option '-Wsign-promo' is valid for C++/ObjC++ but not for C'
+    Output line: 'cc1: warning: command-line option ‘-Wsign-promo’ is valid for C++/ObjC++ but not for C'
 Compilation failed:
     source file: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c'
     check option: ' -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow  -Wsign-promo'
 ===== BUILD LOG =====
 Change Dir: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp'
 
-Run Build Command(s): /usr/bin/ninja -v cmTC_5b058
-[1/2] /usr/bin/cc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow  -Wsign-promo -o CMakeFiles/cmTC_5b058.dir/src.c.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c
-cc1: warning: command-line option '-Wsign-promo' is valid for C++/ObjC++ but not for C
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring '#pragma  ' [-Wunknown-pragmas]
+Run Build Command(s): /usr/bin/ninja -v cmTC_be62c
+[1/2] /usr/bin/cc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow  -Wsign-promo -o CMakeFiles/cmTC_be62c.dir/src.c.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c
+cc1: warning: command-line option ‘-Wsign-promo’ is valid for C++/ObjC++ but not for C
+/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
     1 | #pragma
       | 
-[2/2] : && /usr/bin/cc -O3 -DNDEBUG  CMakeFiles/cmTC_5b058.dir/src.c.o -o cmTC_5b058   && :
+[2/2] : && /usr/bin/cc -O3 -DNDEBUG  CMakeFiles/cmTC_be62c.dir/src.c.o -o cmTC_be62c   && :
 
 
 ===== END =====
 
 Build output check failed:
     Regex: 'command[- ]line option .* is valid for .* but not for C'
-    Output line: 'cc1: warning: command-line option '-Wsuggest-override' is valid for C++/ObjC++ but not for C'
+    Output line: 'cc1: warning: command-line option ‘-Wsuggest-override’ is valid for C++/ObjC++ but not for C'
 Compilation failed:
     source file: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c'
     check option: ' -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wsuggest-override'
 ===== BUILD LOG =====
 Change Dir: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp'
 
-Run Build Command(s): /usr/bin/ninja -v cmTC_8fe8c
-[1/2] /usr/bin/cc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wsuggest-override -o CMakeFiles/cmTC_8fe8c.dir/src.c.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c
-cc1: warning: command-line option '-Wsuggest-override' is valid for C++/ObjC++ but not for C
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring '#pragma  ' [-Wunknown-pragmas]
+Run Build Command(s): /usr/bin/ninja -v cmTC_71f9b
+[1/2] /usr/bin/cc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wsuggest-override -o CMakeFiles/cmTC_71f9b.dir/src.c.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c
+cc1: warning: command-line option ‘-Wsuggest-override’ is valid for C++/ObjC++ but not for C
+/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
     1 | #pragma
       | 
-[2/2] : && /usr/bin/cc -O3 -DNDEBUG  CMakeFiles/cmTC_8fe8c.dir/src.c.o -o cmTC_8fe8c   && :
+[2/2] : && /usr/bin/cc -O3 -DNDEBUG  CMakeFiles/cmTC_71f9b.dir/src.c.o -o cmTC_71f9b   && :
 
 
 ===== END =====
 
 Build output check failed:
     Regex: 'command[- ]line option .* is valid for .* but not for C'
-    Output line: 'cc1: warning: command-line option '-Wno-delete-non-virtual-dtor' is valid for C++/ObjC++ but not for C'
+    Output line: 'cc1: warning: command-line option ‘-Wno-delete-non-virtual-dtor’ is valid for C++/ObjC++ but not for C'
 Compilation failed:
     source file: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c'
     check option: ' -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wno-delete-non-virtual-dtor'
 ===== BUILD LOG =====
 Change Dir: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp'
 
-Run Build Command(s): /usr/bin/ninja -v cmTC_248cf
-[1/2] /usr/bin/cc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wno-delete-non-virtual-dtor -o CMakeFiles/cmTC_248cf.dir/src.c.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c
-cc1: warning: command-line option '-Wno-delete-non-virtual-dtor' is valid for C++/ObjC++ but not for C
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring '#pragma  ' [-Wunknown-pragmas]
+Run Build Command(s): /usr/bin/ninja -v cmTC_d4db6
+[1/2] /usr/bin/cc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wno-delete-non-virtual-dtor -o CMakeFiles/cmTC_d4db6.dir/src.c.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c
+cc1: warning: command-line option ‘-Wno-delete-non-virtual-dtor’ is valid for C++/ObjC++ but not for C
+/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
     1 | #pragma
       | 
-[2/2] : && /usr/bin/cc -O3 -DNDEBUG  CMakeFiles/cmTC_248cf.dir/src.c.o -o cmTC_248cf   && :
+[2/2] : && /usr/bin/cc -O3 -DNDEBUG  CMakeFiles/cmTC_d4db6.dir/src.c.o -o cmTC_d4db6   && :
 
 
 ===== END =====
 
 Build output check failed:
     Regex: 'unrecognized .*option'
-    Output line: 'cc1plus: note: unrecognized command-line option '-Wno-unnamed-type-template-args' may have been intended to silence earlier diagnostics'
+    Output line: 'cc1plus: note: unrecognized command-line option ‘-Wno-unnamed-type-template-args’ may have been intended to silence earlier diagnostics'
 Compilation failed:
     source file: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx'
     check option: ' -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor  -Wno-unnamed-type-template-args'
 ===== BUILD LOG =====
 Change Dir: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp'
 
-Run Build Command(s): /usr/bin/ninja -v cmTC_43b7e
-[1/2] /usr/bin/c++   -O3 -DNDEBUG -std=c++11 -fPIE    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor  -Wno-unnamed-type-template-args -o CMakeFiles/cmTC_43b7e.dir/src.cxx.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring '#pragma  ' [-Wunknown-pragmas]
+Run Build Command(s): /usr/bin/ninja -v cmTC_27e87
+[1/2] /usr/bin/c++   -O3 -DNDEBUG -std=c++11 -fPIE    -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor  -Wno-unnamed-type-template-args -o CMakeFiles/cmTC_27e87.dir/src.cxx.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx
+/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
     1 | #pragma
       | 
-cc1plus: note: unrecognized command-line option '-Wno-unnamed-type-template-args' may have been intended to silence earlier diagnostics
-[2/2] : && /usr/bin/c++ -O3 -DNDEBUG  CMakeFiles/cmTC_43b7e.dir/src.cxx.o -o cmTC_43b7e   && :
+cc1plus: note: unrecognized command-line option ‘-Wno-unnamed-type-template-args’ may have been intended to silence earlier diagnostics
+[2/2] : && /usr/bin/c++ -O3 -DNDEBUG  CMakeFiles/cmTC_27e87.dir/src.cxx.o -o cmTC_27e87   && :
 
 
 ===== END =====
 
 Build output check failed:
     Regex: 'unrecognized .*option'
-    Output line: 'cc1: note: unrecognized command-line option '-Wno-unnamed-type-template-args' may have been intended to silence earlier diagnostics'
+    Output line: 'cc1: note: unrecognized command-line option ‘-Wno-unnamed-type-template-args’ may have been intended to silence earlier diagnostics'
 Compilation failed:
     source file: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c'
     check option: ' -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wno-unnamed-type-template-args'
 ===== BUILD LOG =====
 Change Dir: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp'
 
-Run Build Command(s): /usr/bin/ninja -v cmTC_c506e
-[1/2] /usr/bin/cc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wno-unnamed-type-template-args -o CMakeFiles/cmTC_c506e.dir/src.c.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring '#pragma  ' [-Wunknown-pragmas]
+Run Build Command(s): /usr/bin/ninja -v cmTC_f78fb
+[1/2] /usr/bin/cc   -O3 -DNDEBUG -fPIE    -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized  -Wno-unnamed-type-template-args -o CMakeFiles/cmTC_f78fb.dir/src.c.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c
+/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.c:1: warning: ignoring ‘#pragma  ’ [-Wunknown-pragmas]
     1 | #pragma
       | 
-cc1: note: unrecognized command-line option '-Wno-unnamed-type-template-args' may have been intended to silence earlier diagnostics
-[2/2] : && /usr/bin/cc -O3 -DNDEBUG  CMakeFiles/cmTC_c506e.dir/src.c.o -o cmTC_c506e   && :
-
-
-===== END =====
-
-Compilation failed:
-    source file: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/cmake/checks/cpu_sse3.cpp'
-    check option: ''
-===== BUILD LOG =====
-Change Dir: '/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp'
-
-Run Build Command(s): /usr/bin/ninja -v cmTC_fabb6
-[1/2] /usr/bin/c++   -O3 -DNDEBUG -std=c++11 -fPIE -o CMakeFiles/cmTC_fabb6.dir/cpu_sse3.cpp.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/cmake/checks/cpu_sse3.cpp
-FAILED: CMakeFiles/cmTC_fabb6.dir/cpu_sse3.cpp.o 
-/usr/bin/c++   -O3 -DNDEBUG -std=c++11 -fPIE -o CMakeFiles/cmTC_fabb6.dir/cpu_sse3.cpp.o -c /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/cmake/checks/cpu_sse3.cpp
-In file included from /media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/cmake/checks/cpu_sse3.cpp:1:
-/usr/lib/gcc/x86_64-linux-gnu/13/include/pmmintrin.h: In function 'int main()':
-/usr/lib/gcc/x86_64-linux-gnu/13/include/pmmintrin.h:75:1: error: inlining failed in call to 'always_inline' '__m128 _mm_moveldup_ps(__m128)': target specific option mismatch
-   75 | _mm_moveldup_ps (__m128 __X)
-      | ^~~~~~~~~~~~~~~
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/cmake/checks/cpu_sse3.cpp:5:24: note: called from here
-    5 |     v = _mm_moveldup_ps(u); // SSE3
-      |         ~~~~~~~~~~~~~~~^~~
-/usr/lib/gcc/x86_64-linux-gnu/13/include/pmmintrin.h:75:1: error: inlining failed in call to 'always_inline' '__m128 _mm_moveldup_ps(__m128)': target specific option mismatch
-   75 | _mm_moveldup_ps (__m128 __X)
-      | ^~~~~~~~~~~~~~~
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/cmake/checks/cpu_sse3.cpp:5:24: note: called from here
-    5 |     v = _mm_moveldup_ps(u); // SSE3
-      |         ~~~~~~~~~~~~~~~^~~
-ninja: build stopped: subcommand failed.
+cc1: note: unrecognized command-line option ‘-Wno-unnamed-type-template-args’ may have been intended to silence earlier diagnostics
+[2/2] : && /usr/bin/cc -O3 -DNDEBUG  CMakeFiles/cmTC_f78fb.dir/src.c.o -o cmTC_f78fb   && :
 
 
 ===== END =====

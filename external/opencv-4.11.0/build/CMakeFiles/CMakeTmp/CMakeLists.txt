@@ -11,19 +11,19 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${EXE_LINKER_FLAGS}")
 include_directories(${INCLUDE_DIRECTORIES})
 set(CMAKE_SUPPRESS_REGENERATION 1)
 link_directories(${LINK_DIRECTORIES})
-add_definitions([==[ -mavx]==])
+add_definitions([==[ -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Wsuggest-override -Wno-delete-non-virtual-dtor -Wno-comment -Wimplicit-fallthrough=3 -Wno-strict-overflow -fdiagnostics-show-option -pthread -fomit-frame-pointer -ffunction-sections  -fdata-sections]==])
 cmake_policy(SET CMP0065 NEW)
 cmake_policy(SET CMP0083 OLD)
 cmake_policy(SET CMP0155 OLD)
 include("${CMAKE_ROOT}/Modules/Internal/HeaderpadWorkaround.cmake")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp")
-add_executable(cmTC_4e021)
-target_sources(cmTC_4e021 PRIVATE
-  "/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/cmake/checks/cpu_avx.cpp"
+add_executable(cmTC_ae49f)
+target_sources(cmTC_ae49f PRIVATE
+  "/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/src.cxx"
 )
-file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/cmTC_4e021_loc"
-     CONTENT $<TARGET_FILE:cmTC_4e021>)
-set_property(TARGET cmTC_4e021 PROPERTY "CXX_EXTENSIONS" "OFF")
-set_property(TARGET cmTC_4e021 PROPERTY "CXX_STANDARD" "11")
-set_property(TARGET cmTC_4e021 PROPERTY "CXX_STANDARD_REQUIRED" "TRUE")
-target_link_libraries(cmTC_4e021 ${LINK_LIBRARIES})
+file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/cmTC_ae49f_loc"
+     CONTENT $<TARGET_FILE:cmTC_ae49f>)
+set_property(TARGET cmTC_ae49f PROPERTY "CXX_EXTENSIONS" "OFF")
+set_property(TARGET cmTC_ae49f PROPERTY "CXX_STANDARD" "11")
+set_property(TARGET cmTC_ae49f PROPERTY "CXX_STANDARD_REQUIRED" "TRUE")
+target_link_libraries(cmTC_ae49f ${LINK_LIBRARIES})
