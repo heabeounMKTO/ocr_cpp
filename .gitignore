@@ -4,6 +4,7 @@
 *.png
 *.jpeg
 *.jpg
+.cache/
 external/libtorch
 external/opencv
 external/onnxruntime*

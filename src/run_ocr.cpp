@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(
                         std::chrono::high_resolution_clock::now() - start);
 
-    std::cout << "Detection completed in: " << duration.count() << " ms" << std::endl;
+  std::cout << "Detection completed in: " << duration.count() << " ms" << std::endl;
 
 
   detector.drawBoundingBox(image, results); // Simple bounding box drawing
