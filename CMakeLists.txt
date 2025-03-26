@@ -5,13 +5,27 @@ cmake_minimum_required(VERSION 3.18)
 project(yolo_detector LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_LINKER /usr/local/bin/mold)
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=mold")
+# set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=mold")
+set (CMAKE_CXX_FLAGS "-fuse-ld=mold")
+
+message(STATUS "USING LINKER ${CMAKE_EXE_LINKER_FLAGS}")
+
 
 set(EXTERNAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external)
 set(EXTERNAL_BUILD_DIR ${EXTERNAL_DIR}/build)
 set(OPENCV_INSTALL_DIR ${EXTERNAL_DIR}/opencv)
+
+
+set(ONNXRUNTIME_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/external/onnxruntime-linux-x64-1.21.0)
+set(ONNXRUNTIME_INCLUDE_DIR ${ONNXRUNTIME_ROOT}/include)
+set(ONNXRUNTIME_LIB_DIR ${ONNXRUNTIME_ROOT}/lib)
+set(ONNXRUNTIME_LIB "libonnxruntime.so")
+link_directories(${ONNXRUNTIME_LIB_DIR})
+find_library(ONNXRUNTIME_LIB onnxruntime_providers_shared PATHS ${ONNXRUNTIME_LIB})
+
 
 set(TORCH_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/external/libtorch)
 set(OPENCV_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/external/opencv-4.11.0)
@@ -66,14 +80,17 @@ if(NOT EXISTS ${OPENCV_BUILD_DIR})
 endif()
 
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} {OPENCV_ROOT})
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${ONNXRUNTIME_ROOT})
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${TORCH_ROOT})
 
 find_package(Torch REQUIRED)
 find_package(OpenCV REQUIRED)
+# find_package(ONNXRuntime REQUIRED)
 include_directories( 
   ${CMAKE_CURRENT_SOURCE_DIR}/include
   ${TORCH_ROOT}/include
   ${TORCH_ROOT}/include/torch/csrc/api/include
+  ${ONNXRUNTIME_INCLUDE_DIR}
   ${OPENCV_ROOT/include/opencv4/opencv2}
 )
 
@@ -81,8 +98,9 @@ file (GLOB_RECURSE MODULE_SOURCES
   "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
 
-add_executable(yolo_torchscript src/main.cpp)
-target_link_libraries(yolo_torchscript ${TORCH_LIBRARIES} ${OpenCV_LIBS})
+# add_executable(yolo_torchscript src/main.cpp)
+add_executable(run_ocr src/run_ocr.cpp)
+target_link_libraries(run_ocr m ${ONNXRUNTIME_LIB} ${OpenCV_LIBS})
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
