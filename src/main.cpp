@@ -1,4 +1,5 @@
-#include "yolo_model.h"
+#include <torch/script.h>
+
 #include <algorithm>
 #include <chrono>
 #include <cstdio>
@@ -6,8 +7,9 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include <string>
-#include <torch/script.h>
 #include <vector>
+
+#include "yolo_model.h"
 
 int main(int argc, char **argv) {
   YoloModel *keyinfo_model = create_yolo_detector(

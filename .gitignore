@@ -6,6 +6,7 @@
 *.jpg
 .cache/
 build/
+external/
 external/libtorch
 external/opencv
 external/onnxruntime*

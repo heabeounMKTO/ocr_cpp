@@ -1,3 +1,0 @@
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_ae49f.dir
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/CMakeFiles/edit_cache.dir
-/media/hbdesk/hb_desk_ext/ocr_cpp/external/opencv-4.11.0/build/CMakeFiles/CMakeTmp/CMakeFiles/rebuild_cache.dir
