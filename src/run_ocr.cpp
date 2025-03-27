@@ -2,6 +2,8 @@
 #include <memory>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgcodecs.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/opencv.hpp>
 #include <string>
 
 #include "paddle_inference_api.h"
@@ -36,8 +38,12 @@ int main(int argc, char *argv[]) {
       "/media/hbdesk/hb_desk_ext/ocr_core/models/kh_dict.txt", false, "f32", 1,
       112, 112);
   detector.drawBoundingBox(image, results); // Simple bounding box drawing
-  // detector.drawBoundingBoxMask(image, results); // Uncomment for mask
-  // drawing
+  //
+  // detector.drawBoundingBoxMask(image, results); // Uncomment for mask drawing
+  
+  for (const auto &detection: results) {
+    cv::Rect(image, cv::Point(detection.box.x, detection.box.y), cv::Point(detection.box.x + detection.box.width, detection.box.y + detection.box.height), cv::Scalar(0,255, 0), 2);
+  }
 
   // Save the processed image to the specified directory
   if (cv::imwrite(save_path, image)) {

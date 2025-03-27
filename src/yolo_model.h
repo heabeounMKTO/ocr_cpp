@@ -119,7 +119,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type inline clamp(
  * @param path Path to the file containing class names.
  * @return std::vector<std::string> Vector of class names.
  */
-std::vector<std::string> getClassNames(const std::string &path) {
+static inline std::vector<std::string> getClassNames(const std::string &path) {
   std::vector<std::string> classNames;
   std::ifstream infile(path);
 
@@ -146,7 +146,7 @@ std::vector<std::string> getClassNames(const std::string &path) {
  * @param vector Vector of integers.
  * @return size_t Product of all elements.
  */
-size_t vectorProduct(const std::vector<int64_t> &vector) {
+static inline size_t vectorProduct(const std::vector<int64_t> &vector) {
   return std::accumulate(vector.begin(), vector.end(), 1ull,
                          std::multiplies<size_t>());
 }
@@ -164,7 +164,7 @@ size_t vectorProduct(const std::vector<int64_t> &vector) {
  * @param scaleUp Whether to allow scaling up of the image.
  * @param stride Stride size for padding alignment.
  */
-inline void letterBox(const cv::Mat &image, cv::Mat &outImage,
+static inline void letterBox(const cv::Mat &image, cv::Mat &outImage,
                       const cv::Size &newShape,
                       const cv::Scalar &color = cv::Scalar(114, 114, 114),
                       bool auto_ = true, bool scaleFill = false,
@@ -252,7 +252,7 @@ inline void letterBox(const cv::Mat &image, cv::Mat &outImage,
  * @param p_Clip Whether to clip the coordinates to the image boundaries.
  * @return BoundingBox Scaled bounding box.
  */
-BoundingBox scaleCoords(const cv::Size &imageShape, BoundingBox coords,
+static inline BoundingBox scaleCoords(const cv::Size &imageShape, BoundingBox coords,
                         const cv::Size &imageOriginalShape, bool p_Clip) {
   BoundingBox result;
   float gain = std::min(static_cast<float>(imageShape.height) /
@@ -292,7 +292,7 @@ BoundingBox scaleCoords(const cv::Size &imageShape, BoundingBox coords,
  * @param indices Output vector of indices that survive NMS.
  */
 // Optimized Non-Maximum Suppression Function
-void NMSBoxes(const std::vector<BoundingBox> &boundingBoxes,
+static inline void NMSBoxes(const std::vector<BoundingBox> &boundingBoxes,
               const std::vector<float> &scores, float scoreThreshold,
               float nmsThreshold, std::vector<int> &indices) {
   indices.clear();
@@ -393,7 +393,7 @@ void NMSBoxes(const std::vector<BoundingBox> &boundingBoxes,
  * @param seed Seed for random color generation to ensure reproducibility.
  * @return std::vector<cv::Scalar> Vector of colors.
  */
-inline std::vector<cv::Scalar>
+static inline std::vector<cv::Scalar>
 generateColors(const std::vector<std::string> &classNames, int seed = 42) {
   // Static cache to store colors based on class names to avoid regenerating
   static std::unordered_map<size_t, std::vector<cv::Scalar>> colorCache;
@@ -439,7 +439,7 @@ generateColors(const std::vector<std::string> &classNames, int seed = 42) {
  * @param classNames Vector of class names corresponding to object IDs.
  * @param colors Vector of colors for each class.
  */
-inline void drawBoundingBox(cv::Mat &image,
+static inline void drawBoundingBox(cv::Mat &image,
                             const std::vector<Detection> &detections,
                             const std::vector<std::string> &classNames,
                             const std::vector<cv::Scalar> &colors) {
@@ -505,7 +505,7 @@ inline void drawBoundingBox(cv::Mat &image,
  * @param classColors Vector of colors for each class.
  * @param maskAlpha Alpha value for the mask transparency.
  */
-inline void drawBoundingBoxMask(cv::Mat &image,
+static inline void drawBoundingBoxMask(cv::Mat &image,
                                 const std::vector<Detection> &detections,
                                 const std::vector<std::string> &classNames,
                                 const std::vector<cv::Scalar> &classColors,
