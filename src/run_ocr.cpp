@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include "yolo_model.h"
+#include "rec.h"
 
 int main(int argc, char *argv[]) {
   const std::string model_path = "./models/id_ki_v12.onnx"; 
@@ -24,7 +25,10 @@ int main(int argc, char *argv[]) {
 
   std::cout << "Detection completed in: " << duration.count() << " ms" << std::endl;
 
-
+  PaddleCharacterRecognizer* _test_a; 
+  new_paddle_recognizer(_test_a,"/media/hbdesk/hb_desk_ext/ocr_core/models/latin_ppocr_mobile_v2.0_rec_infer", 
+                                                            false, 0, 1024, 4, 
+                                                            false, "/media/hbdesk/hb_desk_ext/ocr_core/models/kh_dict.txt", false, "f32", 1, 112, 112);
   detector.drawBoundingBox(image, results); // Simple bounding box drawing
     // detector.drawBoundingBoxMask(image, results); // Uncomment for mask drawing
 

@@ -18,6 +18,31 @@ set(EXTERNAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external)
 set(EXTERNAL_BUILD_DIR ${EXTERNAL_DIR}/build)
 set(OPENCV_INSTALL_DIR ${EXTERNAL_DIR}/opencv)
 
+set(PADDLE_LIB ${CMAKE_CURRENT_SOURCE_DIR}/external/paddle)
+set(PADDLE_INCLUDE_DIR "${PADDLE_LIB}/paddle/include")
+set(PADDLE_LIB_DIR "${PADDLE_LIB}/paddle/lib")
+link_directories(PADDLE_LIB_DIR)
+
+include_directories("${PADDLE_LIB}/third_party/install/protobuf/include")
+include_directories("${PADDLE_LIB}/third_party/install/glog/include")
+include_directories("${PADDLE_LIB}/third_party/install/gflags/include")
+include_directories("${PADDLE_LIB}/third_party/install/xxhash/include")
+include_directories("${PADDLE_LIB}/third_party/install/zlib/include")
+include_directories("${PADDLE_LIB}/third_party/install/onnxruntime/include")
+include_directories("${PADDLE_LIB}/third_party/install/paddle2onnx/include")
+include_directories("${PADDLE_LIB}/third_party/boost")
+include_directories("${PADDLE_LIB}/third_party/eigen3")
+
+link_directories("${PADDLE_LIB}/third_party/install/zlib/lib")
+link_directories("${PADDLE_LIB}/third_party/install/protobuf/lib")
+link_directories("${PADDLE_LIB}/third_party/install/glog/lib")
+link_directories("${PADDLE_LIB}/third_party/install/gflags/lib")
+link_directories("${PADDLE_LIB}/third_party/install/xxhash/lib")
+link_directories("${PADDLE_LIB}/third_party/install/onnxruntime/lib")
+link_directories("${PADDLE_LIB}/third_party/install/paddle2onnx/lib")
+link_directories("${PADDLE_LIB}/paddle/lib")
+
+set(PADDLE ${PADDLE_LIB}/paddle/lib/libpaddle_inference${CMAKE_SHARED_LIBRARY_SUFFIX})
 
 set(ONNXRUNTIME_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/external/onnxruntime-linux-x64-1.21.0)
 set(ONNXRUNTIME_INCLUDE_DIR ${ONNXRUNTIME_ROOT}/include)
@@ -92,6 +117,7 @@ include_directories(
   ${TORCH_ROOT}/include/torch/csrc/api/include
   ${ONNXRUNTIME_INCLUDE_DIR}
   ${OPENCV_ROOT/include/opencv4/opencv2}
+  ${PADDLE_INCLUDE_DIR}
 )
 
 file (GLOB_RECURSE MODULE_SOURCES
@@ -100,7 +126,7 @@ file (GLOB_RECURSE MODULE_SOURCES
 
 # add_executable(yolo_torchscript src/main.cpp)
 add_executable(run_ocr src/run_ocr.cpp)
-target_link_libraries(run_ocr m ${ONNXRUNTIME_LIB} ${OpenCV_LIBS})
+target_link_libraries(run_ocr m ${ONNXRUNTIME_LIB} ${OpenCV_LIBS} ${PADDLE}) 
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
