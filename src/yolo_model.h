@@ -40,8 +40,8 @@
 #include <vector>
 
 // Include debug and custom ScopedTimer tools for performance measurement
-#include "../include/tools/Debug.hpp"
-#include "../include/tools/ScopedTimer.hpp"
+#include "../include/yolo_utils/Debug.hpp"
+#include "../include/yolo_utils/ScopedTimer.hpp"
 
 /**
  * @brief Confidence threshold for filtering detections.
@@ -163,42 +163,6 @@ vectorProduct (const std::vector<int64_t> &vector)
 {
   return std::accumulate (vector.begin (), vector.end (), 1ull,
                           std::multiplies<size_t> ());
-}
-
-static inline BoundingBox
-unletterbox (const BoundingBox &box, const cv::Mat &originalImage)
-{
-  // Calculate scaling ratio
-  float ratio = std::min (static_cast<float> (640) / originalImage.rows,
-                          static_cast<float> (640) / originalImage.cols);
-
-  // Calculate padding
-  int newUnpadW = static_cast<int> (std::round (originalImage.cols * ratio));
-  int newUnpadH = static_cast<int> (std::round (originalImage.rows * ratio));
-
-  int dw = 640 - newUnpadW;
-  int dh = 640 - newUnpadH;
-
-  // Padding offsets
-  int padLeft = dw / 2;
-  int padTop = dh / 2;
-
-  // Convert box coordinates
-  float x = (box.x - padLeft) / ratio;
-  float y = (box.y - padTop) / ratio;
-  float width = box.width / ratio;
-  float height = box.height / ratio;
-
-  // Clamp to original image boundaries
-  x = std::max (0.0f, std::min (x, static_cast<float> (originalImage.cols)));
-  y = std::max (0.0f, std::min (y, static_cast<float> (originalImage.rows)));
-  width = std::min (width, static_cast<float> (originalImage.cols - x));
-  height = std::min (height, static_cast<float> (originalImage.rows - y));
-
-  return BoundingBox (static_cast<int> (std::round (x)),
-                      static_cast<int> (std::round (y)),
-                      static_cast<int> (std::round (width)),
-                      static_cast<int> (std::round (height)));
 }
 
 /**
@@ -748,7 +712,7 @@ private:
   }; // Session options for ONNX Runtime
   Ort::Session session{
     nullptr
-  };                          // ONNX Runtime session for running inference
+  }; // ONNX Runtime session for running inference
   bool isDynamicInputShape{}; // Flag indicating if input shape is dynamic
   cv::Size inputImageShape;   // Expected input image shape for the model
 
@@ -1051,11 +1015,6 @@ crop_detections (const cv::Mat &image,
   std::vector<cv::Mat> cropped_images;
   for (const auto &detection : detections)
     {
-      fprintf (stdout, "detection.box %d %d %d %d\n", detection.box.x,
-               detection.box.y, detection.box.width, detection.box.height);
-      auto corrected_bbox = utils::unletterbox (detection.box, image);
-      fprintf (stdout, "corrected_bbox %d %d %d %d\n", corrected_bbox.x,
-               corrected_bbox.y, corrected_bbox.width, corrected_bbox.height);
       int x = detection.box.x;
       int y = detection.box.y;
       int width = detection.box.x + detection.box.width;
@@ -1067,16 +1026,16 @@ crop_detections (const cv::Mat &image,
         }
 
       cv::Rect roi (cv::Point (detection.box.x, detection.box.y),
-                     cv::Point (detection.box.x + detection.box.width,
-                                detection.box.y + detection.box.height));
+                    cv::Point (detection.box.x + detection.box.width,
+                               detection.box.y + detection.box.height));
       cv::Mat cropped_image = image (roi).clone ();
-      cv::imwrite (std::format ("./debug_images/{}.jpg", detection.classId),
-                   cropped_image);
-      // if (debug == true) {
-      //   printf("save debug\n");
-      //   cv::imwrite(std::format("./debug_images/{}.jpg", detection.classId),
-      //   cropped_image);
-      // }
+      if (debug == true)
+        {
+          printf ("save debug\n");
+          cv::imwrite (
+              std::format ("./debug_images/{}.jpg", detection.classId),
+              cropped_image);
+        }
       cropped_images.push_back (cropped_image);
     }
   return cropped_images;

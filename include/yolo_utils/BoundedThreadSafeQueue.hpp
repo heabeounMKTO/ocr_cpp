@@ -17,7 +17,7 @@
 #include <mutex>
 #include <condition_variable>
 #include <atomic>
-#include "tools/Debug.hpp" // Include the config file to access the flags
+#include "yolo_utils/Debug.hpp" // Include the config file to access the flags
 
 
 template<typename T>

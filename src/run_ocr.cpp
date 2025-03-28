@@ -41,9 +41,8 @@ main (int argc, char *argv[])
       "/media/hbdesk/hb_desk_ext/ocr_core/models/kh_dict.txt", false, "f32", 1,
       112, 112);
 
-  crop_detections (image, results, true);
+  crop_detections (image, results, false);
   detector.drawBoundingBox (image, results); // Simple bounding box drawing
-  //
   // detector.drawBoundingBoxMask(image, results); // Uncomment for mask
   // drawing
   cv::imwrite ("./debug_images/pre_save.jpg", image);
